@@ -529,6 +529,10 @@ main {
   background: var(--bg-hover);
 }
 
+news-item ul {
+  list-style: none;
+}
+
 .news-source {
   font-size: 9px;
   letter-spacing: 0.16em;
