@@ -13,7 +13,10 @@ async function getCompanyNews(ticker = "AAPL") {
 
 async function loadNews(ticker = "AAPL") {
     const news = await getCompanyNews(ticker);
+    document.getElementById("newsHeader").innerHTML = "MARKET NEWS" + " ~ " + ticker;
     const container = document.getElementById("newsBody");
+    const newsCount = document.getElementById("newsCount");
+    newsCount.innerHTML = Object.keys(news).length + " " + "News Articles"
     container.innerHTML = "";
 
     news.forEach(article => {
@@ -102,12 +105,18 @@ async function getAIanalysis(ticker="SPY") {
 }
 
 async function loadAnalysis(ticker="SPY") {
-    const data = await getAIanalysis(ticker);
     document.getElementById("aiTicker").innerText = ticker;
     const container = document.getElementById("aiBody");
+    container.innerHTML = `
+                        <div class="placeholder-state">
+                            <div class="placeholder-icon">Loading AI Analysis....</div>
+                            <p>AI generated market analysis and investment insights</p>
+                        </div>`
+    const data = await getAIanalysis(ticker);
+    
 
     container.innerHTML = `
-                <div style="padding: 8px 4px;">ß
+                <div style="padding: 8px 4px;"> Google Gemini ~ Flash
                     
                     <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
                         <span style="font-size: 18px; font-weight: 800; color: white; letter-spacing: 2px;">${ticker}</span>
