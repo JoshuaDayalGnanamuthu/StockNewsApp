@@ -78,8 +78,8 @@ def get_ai_analysis(ticker="AAPL"):
         }
     )
     
-    result = response.parsed.model_dump()
-    cache[ticker] = result
+    result = response.parsed.model_dump() # pyright: ignore[reportOptionalMemberAccess, reportAttributeAccessIssue]
+    cache[ticker] = result 
     return jsonify(result)   
 
 if __name__ == "__main__":
