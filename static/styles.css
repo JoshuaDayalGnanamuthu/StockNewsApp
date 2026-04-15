@@ -7,36 +7,40 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Syne:wght@400;600;700;800&display=swap');
 
 :root {
-  --bg-base:        #070c14;
-  --bg-surface:     #0b1220;
-  --bg-card:        #0f1828;
-  --bg-elevated:    #141e30;
-  --bg-hover:       #1a263c;
+  --bg-base:        #000000;
+  --bg-surface:     #0a0a0a;
+  --bg-card:        #111111;
+  --bg-elevated:    #181818;
+  --bg-hover:       #202020;
 
-  --border-dim:     rgba(80, 140, 220, 0.08);
-  --border-mid:     rgba(80, 140, 220, 0.18);
-  --border-bright:  rgba(100, 180, 255, 0.35);
+  --border-dim:     rgba(255, 255, 255, 0.06);
+  --border-mid:     rgba(255, 255, 255, 0.14);
+  --border-bright:  rgba(255, 255, 255, 0.28);
 
-  --olive:          #5a9fd4;
-  --olive-dim:      #2e5c8a;
-  --olive-bright:   #88c4f0;
-  --amber:          #38bdf8;
-  --amber-dim:      #1e6a9a;
-  --amber-bright:   #7dd3fc;
-  --sage:           #34d399;
-  --sage-dim:       #1a5c40;
-  --red:            #f87171;
-  --red-dim:        #7f1d1d;
-  --green:          #4ade80;
-  --green-dim:      #14532d;
+  --olive:          #d9d9d9;
+  --olive-dim:      #8a8a8a;
+  --olive-bright:   #ffffff;
 
-  --text-primary:   #dce8f8;
-  --text-secondary: #7a96b8;
-  --text-dim:       #2e4060;
+  --amber:          #f2f2f2;
+  --amber-dim:      #999999;
+  --amber-bright:   #ffffff;
+
+  --sage:           #ffffff;
+  --sage-dim:       #777777;
+
+  --red:            #ea0f0f;
+  --red-dim:        #6a6a6a;
+
+  --green:          #24e10b;
+  --green-dim:      #7a7a7a;
+
+  --text-primary:   #ffffff;
+  --text-secondary: #b5b5b5;
+  --text-dim:       #666666;
 
   --font-mono:      'DM Mono', 'Courier New', monospace;
   --font-display:   'Syne', sans-serif;
-  --font-brand:     'Bitcount Grid Double', 'DM Mono', monospace;
+  --font-brand:     'DM Mono', monospace;
 
   --radius-sm:      4px;
   --radius-md:      8px;
@@ -74,7 +78,7 @@ body {
   right: -100px;
   width: 520px;
   height: 520px;
-  background: radial-gradient(circle, rgba(56,130,220,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
   animation: orbPulse 8s ease-in-out infinite;
@@ -217,8 +221,19 @@ header {
 
 .ticker-symbol { color: var(--olive); font-weight: 500; letter-spacing: 0.06em; }
 .ticker-price  { color: var(--text-primary); }
-.ticker-up     { color: var(--green); }
-.ticker-down   { color: var(--red); }
+.ticker-up,
+.index-change.positive,
+.stock-delta.positive {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.ticker-down,
+.index-change.negative,
+.stock-delta.negative {
+  color: #8f8f8f;
+  font-weight: 600;
+}
 
 main {
   display: grid;
@@ -262,14 +277,14 @@ main {
 }
 .index-card:hover::before { background: var(--olive-bright); }
 
-.index-card.loading { opacity: 0.5; }
+.index-card.loading { opacity: 1; }
 .index-card.up::before   { background: var(--green); }
 .index-card.down::before { background: var(--red); }
 
 .index-name {
   font-size: 9px;
   letter-spacing: 0.22em;
-  color: var(--text-dim);
+  color: var(--text-primary);
   margin-bottom: 6px;
   font-weight: 500;
 }
@@ -504,7 +519,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 600px;
+  max-height: 1200px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--border-mid) transparent;
@@ -527,6 +542,17 @@ main {
 .news-item:hover {
   border-color: var(--border-bright);
   background: var(--bg-hover);
+}
+
+.stock-info {
+    transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+
+}
+
+.stock-info:hover {
+  border-color: var(--border-bright) !important;
+  background: var(--bg-hover) !important;
 }
 
 news-item ul {
