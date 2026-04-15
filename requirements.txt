@@ -1,0 +1,7 @@
+flask
+finnhub-python
+google-genai
+pydantic
+python-dotenv
+requests
+gunicorn
