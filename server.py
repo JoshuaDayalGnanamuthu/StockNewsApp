@@ -73,7 +73,7 @@ def get_ai_analysis(ticker="AAPL"):
     recommendations = recommendations[0] if recommendations else {}
     
     response = AIclient.models.generate_content(
-        model="gemini-3.1-flash-lite",
+        model="gemini-2.5-flash",
         contents=f"""
                     You are a financial analyst.
                     Analyze stock ticker {ticker} for the last 3 trading days.
