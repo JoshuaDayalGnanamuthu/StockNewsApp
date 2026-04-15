@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: olive-market
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn server:app
+    envVars:
+      - key: API_KEY
+        sync: false
+      - key: AI_API_KEY
+        sync: false
